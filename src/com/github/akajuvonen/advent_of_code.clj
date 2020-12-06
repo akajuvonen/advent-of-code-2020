@@ -8,4 +8,5 @@
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
-  (println (parse-file "inputs/day1.txt")))
+  (def entries (set (parse-file "inputs/day1.txt")))
+  (println entries))
