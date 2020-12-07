@@ -7,12 +7,13 @@
 
 (defn day1-part1 [entries]
   (loop [[entry & remaining] entries]
-    (println entry)
     (if-not (empty? remaining)
-      (recur remaining))))
+      (if (contains? entries (- 2020 entry))
+        (* entry (- 2020 entry))
+        (recur remaining)))))
 
 (defn -main
   "Advent of code solutions main."
   [& args]
   (def entries (set (parse-file "inputs/day1.txt")))
-  (day1-part1 entries))
+  (println (day1-part1 entries)))
