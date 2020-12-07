@@ -8,9 +8,10 @@
 (defn day1-part1 [entries]
   (loop [[entry & remaining] entries]
     (if-not (empty? remaining)
-      (if (contains? entries (- 2020 entry))
-        (* entry (- 2020 entry))
-        (recur remaining)))))
+      (let [remainder (- 2020 entry)]
+        (if (contains? entries remainder)
+          (* entry remainder)
+          (recur remaining))))))
 
 (defn -main
   "Advent of code solutions main."
