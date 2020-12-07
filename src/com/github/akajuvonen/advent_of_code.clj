@@ -5,8 +5,14 @@
   (let [arr (clojure.string/split (slurp filename) #"\n")]
     (map #(Integer/parseInt %) arr)))
 
+(defn day1-part1 [entries]
+  (loop [[entry & remaining] entries]
+    (println entry)
+    (if-not (empty? remaining)
+      (recur remaining))))
+
 (defn -main
-  "I don't do a whole lot ... yet."
+  "Advent of code solutions main."
   [& args]
   (def entries (set (parse-file "inputs/day1.txt")))
-  (println entries))
+  (day1-part1 entries))
