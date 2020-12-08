@@ -1,9 +1,12 @@
 (ns advent-of-code.day01
-  (:require [clojure.string :as str])
   (:use [clojure.math.combinatorics :only (combinations)]))
 
 (defn parse [string]
-  (str/split string #"\n"))
+  (clojure.string/split string #"\n"))
+
+(defn str->int
+  [strs]
+  (map #(Integer. %) strs))
 
 (defn find-multiple
   "Find the multiple of two entries that sum up to 2020"
@@ -17,4 +20,5 @@
 
 (defn part1
   [input]
-  (parse input))
+  (let [entries-set (set (str->int (parse input)))]
+    (find-multiple entries-set)))
