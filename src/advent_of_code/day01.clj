@@ -3,7 +3,8 @@
 
 (def wanted-sum 2020)
 
-(defn parse [string]
+(defn parse
+  [string]
   (clojure.string/split string #"\n"))
 
 (defn str->int
