@@ -1,8 +1,9 @@
 (ns advent-of-code.core
+  (:require [clojure.string :as str])
   (:use [clojure.math.combinatorics :only (combinations)]))
 
 (defn parse [string]
-  (clojure.string/split (string) #"\n"))
+  (str/split string #"\n"))
   
 
 (defn day1-part1
