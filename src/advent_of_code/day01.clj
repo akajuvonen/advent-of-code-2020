@@ -11,7 +11,7 @@
   [strs]
   (map #(Integer. %) strs))
 
-(defn find-multiple
+(defn find-product
   "Find the product of n entries that sum up to a target sum"
   [entries target n]
   (let [combs (clojure.math.combinatorics/combinations (vec entries) n)]
@@ -26,9 +26,9 @@
 (defn part1
   [input]
   (let [entries-set (set (str->int (parse input)))]
-    (find-multiple entries-set wanted-sum 1)))
+    (find-product entries-set wanted-sum 1)))
 
 (defn part2
   [input]
   (let [entries-set (set (str->int (parse input)))]
-    (find-multiple entries-set wanted-sum 2)))
+    (find-product entries-set wanted-sum 2)))
