@@ -17,10 +17,10 @@
   (let [combs (clojure.math.combinatorics/combinations (vec entries) n)]
   (loop [[comb & remaining] combs]
     (if-not (empty? remaining)
-      (let [product (reduce * comb)
-            remainder (- target product)]
+      (let [sum (reduce + comb)
+            remainder (- target sum)]
         (if (contains? entries remainder)
-          (* product remainder)
+          (reduce * (conj (vec comb) remainder))
           (recur remaining)))))))
 
 (defn part1
