@@ -27,3 +27,8 @@
   [input]
   (let [entries-set (set (str->int (parse input)))]
     (find-multiple entries-set wanted-sum 1)))
+
+(defn part2
+  [input]
+  (let [entries-set (set (str->int (parse input)))]
+    (find-multiple entries-set wanted-sum 2)))
