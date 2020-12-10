@@ -12,16 +12,18 @@
   (map #(Integer. %) strs))
 
 (defn find-multiple
-  "Find the multiple of two entries that sum up to a wanted sum"
-  [entries target]
-  (loop [[entry & remaining] entries]
+  "Find the product of n entries that sum up to a target sum"
+  [entries target n]
+  (let [combs (clojure.math.combinatorics/combinations (vec entries) n)]
+  (loop [[comb & remaining] combs]
     (if-not (empty? remaining)
-      (let [remainder (- target entry)]
+      (let [product (reduce * comb)
+            remainder (- target product)]
         (if (contains? entries remainder)
-          (* entry remainder)
-          (recur remaining))))))
+          (* product remainder)
+          (recur remaining)))))))
 
 (defn part1
   [input]
   (let [entries-set (set (str->int (parse input)))]
-    (find-multiple entries-set wanted-sum)))
+    (find-multiple entries-set wanted-sum 1)))
