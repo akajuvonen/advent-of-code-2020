@@ -1,5 +1,6 @@
 (ns advent-of-code.day01
-  (:use [clojure.math.combinatorics :only (combinations)]))
+  (:require [clojure.math.combinatorics]
+            [clojure.string]))
 
 (def wanted-sum 2020)
 
@@ -21,7 +22,8 @@
             remainder (- target sum)]
         (if (contains? entries remainder)
           (reduce * (conj (vec comb) remainder))
-          (recur remaining)))))))
+          (recur remaining)))
+      (nil)))))
 
 (defn part1
   [input]
