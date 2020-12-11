@@ -23,7 +23,7 @@
         (if (contains? entries remainder)
           (reduce * (conj (vec comb) remainder))
           (recur remaining)))
-      (nil)))))
+      nil))))
 
 (defn part1
   [input]
