@@ -3,5 +3,5 @@
             [advent-of-code.day01 :refer :all]))
 
 (deftest part1-test
-  (testing "FIXME, I fail."
-    (is (= 1 0))))
+  (testing "find-product"
+    (is (= (advent-of-code.day01/find-product #{2 8 13} 10 1) 16))))
