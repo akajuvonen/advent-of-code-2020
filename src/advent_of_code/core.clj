@@ -5,7 +5,7 @@
 
 (defn -main
   "Advent of code solutions."
-  [& args]
+  []
   (println "Day 1")
   (println "Part 1")
   (println (advent-of-code.day01/part1 (slurp input-day1)))
