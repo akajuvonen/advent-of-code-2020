@@ -2,7 +2,7 @@
   (:require [advent-of-code.day01])
   (:gen-class))
 
-(def input-day1 "inputs/day1.txt")
+(def input-day1 "inputs/day01.txt")
 
 (defn -main
   "Advent of code solutions."
