@@ -1,12 +1,12 @@
 (ns advent-of-code.day01
-  (:require [clojure.math.combinatorics]
-            [clojure.string]))
+  (:require [clojure.math.combinatorics :as combinatorics]
+            [clojure.string :as string]))
 
 (def wanted-sum 2020)
 
 (defn parse
   [string]
-  (clojure.string/split string #"\n"))
+  (string/split string #"\n"))
 
 (defn str->int
   [strs]
@@ -15,7 +15,7 @@
 (defn find-product
   "Find the product of n entries that sum up to a target sum"
   [entries target n]
-  (let [combs (clojure.math.combinatorics/combinations (vec entries) n)]
+  (let [combs (combinatorics/combinations (vec entries) n)]
   (loop [[comb & remaining] combs]
     (if-not (empty? remaining)
       (let [sum (reduce + comb)
