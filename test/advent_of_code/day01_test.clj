@@ -1,6 +1,6 @@
 (ns advent-of-code.day01-test
-  (:require [clojure.test :refer :all]
-            [advent-of-code.day01 :refer :all]))
+  (:require [clojure.test :refer [deftest is testing]]
+            [advent-of-code.day01]))
 
 (deftest part1-test
   (testing "find-product"
