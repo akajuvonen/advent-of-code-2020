@@ -1,5 +1,6 @@
 (ns advent-of-code.core
-  (:require [advent-of-code.day01]))
+  (:require [advent-of-code.day01])
+  (:gen-class))
 
 (def input-day1 "inputs/day1.txt")
 
