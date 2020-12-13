@@ -29,16 +29,18 @@
                         (into []
                               (map dec [first-index second-index]))))))))
 
-(defn part1
-  [input]
+(defn validate-all-passwds
+  [input
+   validation-func]
   (count 
-   (filter identity (map #(apply validate-passwd-count %) 
+   (filter identity (map #(apply validation-func %) 
                          (map parse-line 
                               (string/split input #"\n"))))))
 
+(defn part1
+  [input]
+  (validate-all-passwds input validate-passwd-count))
+
 (defn part2
   [input]
-  (count
-   (filter identity (map #(apply validate-passwd-index %)
-                         (map parse-line
-                              (string/split input #"\n"))))))
+  (validate-all-passwds input validate-passwd-index))
