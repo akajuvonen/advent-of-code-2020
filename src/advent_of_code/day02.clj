@@ -36,3 +36,9 @@
                          (map parse-line 
                               (string/split input #"\n"))))))
 
+(defn part2
+  [input]
+  (count
+   (filter identity (map #(apply validate-passwd-index %)
+                         (map parse-line
+                              (string/split input #"\n"))))))
