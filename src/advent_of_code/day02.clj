@@ -11,10 +11,10 @@
 
 (defn parse-line
   [line]
-  (let [[low-high c passwd] (string/split line #" ")
-        [low high] (map #(Integer. %) (string/split low-high #"-"))
+  (let [[ints c passwd] (string/split line #" ")
+        [first-int second-int] (map #(Integer. %) (string/split ints #"-"))
         c (first c)]
-    [low high c passwd]))
+    [first-int second-int c passwd]))
 
 (defn part1
   [input]
@@ -22,3 +22,5 @@
    (filter identity (map #(apply validate-passwd %) 
                          (map parse-line 
                               (string/split input #"\n"))))))
+
+(nth [1 2 3] 4 nil)
