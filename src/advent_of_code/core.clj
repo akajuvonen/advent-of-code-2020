@@ -16,4 +16,6 @@
   (println (advent-of-code.day01/part2 (slurp input-day1)))
   (println "Day 2")
   (println "Part 1")
-  (println (advent-of-code.day02/part1 (slurp input-day2))))
+  (println (advent-of-code.day02/part1 (slurp input-day2)))
+  (println "Part 2")
+  (println (advent-of-code.day02/part2 (slurp input-day2))))

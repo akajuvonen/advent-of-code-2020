@@ -25,7 +25,9 @@
      (count 
       (filter identity 
               (map #(= % character)
-                   (map #(nth passwd % nil) [first-index second-index]))))))
+                   (map #(nth passwd % nil)
+                        (into []
+                              (map dec [first-index second-index]))))))))
 
 (defn part1
   [input]
