@@ -5,9 +5,9 @@
 (defn separate-passports
   "Separate passport entries into their elements."
   [input]
-  (as-> input $
-      (slurp $)
-      (str/split  $ #"\n\n")))
+  (-> input
+      (slurp)
+      (str/split #"\n\n")))
 
 (defn separate-fields
   "Separate passport entries into their own elements."
@@ -17,6 +17,7 @@
       (str/split #" ")))
 
 (defn fields->map
+  "Parse a sequence of passport fields separated by : into a map."
   [fields]
   (->> fields
        (map #(str/split % #":"))
@@ -29,5 +30,3 @@
        (separate-passports)
        (map separate-fields)
        (map fields->map)))
-
-(last (part1 "inputs/day03.txt"))
