@@ -18,7 +18,9 @@
 
 (defn vec->map
   [vector]
-  (clojure.walk/keywordize-keys (into {} (map #(str/split % #":") vector))))
+  (->> vector
+       (map #(str/split % #":"))
+       (into {})))
 
 (defn part1
   [input]
