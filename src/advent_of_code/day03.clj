@@ -1,6 +1,6 @@
 (ns advent-of-code.day03
   (:require [clojure.string :as str]
-            [clojure.walk :only keywordize-keys]))
+            [clojure.walk :as walk]))
 
 (defn separate-passports
   "Separate passport entries into their elements."
@@ -14,20 +14,20 @@
   [input]
   (-> input
       (str/replace #"\n" " ")
-      (str/split #" ")))``
+      (str/split #" ")))
 
-(defn vec->map
-  [vector]
-  (->> vector
+(defn fields->map
+  [fields]
+  (->> fields
        (map #(str/split % #":"))
        (into {})
-       (clojure.walk/keywordize-keys)))
+       (walk/keywordize-keys)))
 
 (defn part1
   [input]
   (->> input
        (separate-passports)
        (map separate-fields)
-       (map vec->map)))
+       (map fields->map)))
 
-(part1 "inputs/day03.txt")
+(last (part1 "inputs/day03.txt"))
