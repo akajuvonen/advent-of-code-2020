@@ -39,8 +39,8 @@
 
 (defn part1
   [input]
-  (validate-all-passwds input validate-passwd-count))
+  (validate-all-passwds (slurp input) validate-passwd-count))
 
 (defn part2
   [input]
-  (validate-all-passwds input validate-passwd-index))
+  (validate-all-passwds (slurp input) validate-passwd-index))

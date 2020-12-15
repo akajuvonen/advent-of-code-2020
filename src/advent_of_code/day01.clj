@@ -27,10 +27,10 @@
 
 (defn part1
   [input]
-  (let [entries-set (set (str->int (parse input)))]
+  (let [entries-set (set (str->int (parse (slurp input))))]
     (find-product entries-set wanted-sum 1)))
 
 (defn part2
   [input]
-  (let [entries-set (set (str->int (parse input)))]
+  (let [entries-set (set (str->int (parse (slurp input))))]
     (find-product entries-set wanted-sum 2)))
