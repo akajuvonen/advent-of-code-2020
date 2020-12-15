@@ -14,20 +14,20 @@
   [input]
   (-> input
       (str/replace #"\n" " ")
-      (str/split #" ")))
+      (str/split #" ")))``
 
 (defn vec->map
   [vector]
   (->> vector
        (map #(str/split % #":"))
-       (into {})))
+       (into {})
+       (clojure.walk/keywordize-keys)))
 
 (defn part1
   [input]
-  (-> input
-      (separate-passports)
-      (first)
-      (separate-fields)
-      (vec->map)))
+  (->> input
+       (separate-passports)
+       (map separate-fields)
+       (map vec->map)))
 
 (part1 "inputs/day03.txt")
