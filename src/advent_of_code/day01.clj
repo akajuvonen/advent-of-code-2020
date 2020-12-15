@@ -1,12 +1,12 @@
 (ns advent-of-code.day01
   (:require [clojure.math.combinatorics :as combinatorics]
-            [clojure.string :as string]))
+            [clojure.string :as str]))
 
 (def wanted-sum 2020)
 
 (defn parse
   [string]
-  (string/split string #"\n"))
+  (str/split string #"\n"))
 
 (defn str->int
   [strs]

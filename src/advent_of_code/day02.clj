@@ -1,10 +1,10 @@
 (ns advent-of-code.day02
-  (:require [clojure.string :as string]))
+  (:require [clojure.string :as str]))
 
 (defn parse-line
   [line]
-  (let [[ints c passwd] (string/split line #" ")
-        [first-int second-int] (map #(Integer. %) (string/split ints #"-"))
+  (let [[ints c passwd] (str/split line #" ")
+        [first-int second-int] (map #(Integer. %) (str/split ints #"-"))
         c (first c)]
     [first-int second-int c passwd]))
 
@@ -35,7 +35,7 @@
   (count 
    (filter identity (map #(apply validation-func %) 
                          (map parse-line 
-                              (string/split input #"\n"))))))
+                              (str/split input #"\n"))))))
 
 (defn part1
   [input]
