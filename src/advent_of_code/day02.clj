@@ -21,13 +21,13 @@
    second-index
    character
    passwd]
-  (= 1 
-     (count 
-      (filter identity 
-              (map #(= % character)
-                   (map #(nth passwd % nil)
-                        (into []
-                              (map dec [first-index second-index]))))))))
+  (->> [first-index second-index]
+       (map dec)
+       (map #(nth passwd % nil))
+       (map #(= % character))
+       (filter identity)
+       (count)
+       (= 1)))
 
 (defn validate-all-passwds
   [input
