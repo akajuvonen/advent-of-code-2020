@@ -1,4 +1,4 @@
-(ns advent-of-code.day03
+(ns advent-of-code.day04
   (:require [clojure.string :as str]
             [clojure.walk :as walk]))
 
