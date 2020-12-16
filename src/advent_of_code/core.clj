@@ -22,4 +22,8 @@
   (println "Part 2")
   (println (advent-of-code.day02/part2 input-day2))
   (println "Day 4")
-  (println (advent-of-code.day04/part1 input-day4)))
+  (println "Part 1")
+  (println (advent-of-code.day04/part1 input-day4))
+  (println "Part 2")
+  (println (advent-of-code.day04/part2 input-day4)))
+  

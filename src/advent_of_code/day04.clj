@@ -26,6 +26,10 @@
 
 (def required-keys [:byr :iyr :eyr :hgt :hcl :ecl :pid])
 
+(defn validate-passport
+  [passport-map]
+  true)
+
 (defn part1
   [input]
   (->> input
@@ -35,3 +39,11 @@
        (map #(every? % required-keys))
        (filter identity)
        (count)))
+
+(defn part2
+  [input]
+  (->> input
+       (separate-passports)
+       (map separate-fields)
+       (map fields->map)
+       (map validate-passport)))
