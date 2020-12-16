@@ -35,6 +35,3 @@
        (map #(every? % required-keys))
        (filter identity)
        (count)))
-
-(let [m {:hcl "#a7a05c", :pid "0137262572", :eyr "2023", :cid "350", :iyr "2015", :ecl "#52d3fe", :hgt "190cm", :byr "2007"}]
-  (every? m required-keys))
