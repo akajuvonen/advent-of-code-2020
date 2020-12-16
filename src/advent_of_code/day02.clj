@@ -14,8 +14,11 @@
    highest 
    character
    passwd]
-  (<= lowest (get (frequencies passwd) character 0) highest))
-
+  (as-> passwd $
+    (frequencies $)
+    (get $ character 0)
+    (<= lowest $ highest)))
+  
 (defn validate-passwd-index
   [first-index
    second-index
