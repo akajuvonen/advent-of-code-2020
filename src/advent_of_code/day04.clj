@@ -39,8 +39,8 @@
   [s]
   (if (nil? s) false
       (or
-       (and (re-matches #"[0-9]{3}cm" s)(<= 150 (Integer. (subs s 0 3)) 193))
-       (and (re-matches #"[0-9]{2}in" s)(<= 59 (Integer. (subs s 0 2)) 76)))))
+       (and (re-matches #"\d{3}cm" s)(<= 150 (Integer. (subs s 0 3)) 193))
+       (and (re-matches #"\d{2}in" s)(<= 59 (Integer. (subs s 0 2)) 76)))))
 
 (defn validate-passport
   [passport-map]
