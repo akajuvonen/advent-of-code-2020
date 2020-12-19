@@ -59,7 +59,8 @@
        (validate-height (:hgt passport-map))
        (validate-color (:hcl passport-map))
        (contains? #{"amb" "blu" "brn" "gry" "grn" "hzl" "oth"} (:ecl passport-map))
-       (re-matches #"\d{9}" (:pid passport-map))))
+       (re-matches #"\d{9}" (:pid passport-map))
+       ))
 
 (defn part1
   [input]
@@ -77,4 +78,6 @@
        (separate-passports)
        (map separate-fields)
        (map fields->map)
-       (map validate-passport)))
+       (map validate-passport)
+       (filter identity)
+       (count)))
