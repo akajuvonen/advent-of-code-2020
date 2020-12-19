@@ -2,6 +2,8 @@
   (:require [clojure.string :as str]))
 
 (defn binary-space-partition
+  "Find a number by dividing the range into lower and upper half
+   until only one number remains."
   [lower
    upper
    s
@@ -15,6 +17,7 @@
         (recur (+ lower diff) upper  remaining lower-char)))))
 
 (defn get-seat-id
+  "Calculate seat ID from a string (row * 8 + column)."
   [s]
   (let [row-string (subs s 0 7)
         column-string (subs s 7 10)
@@ -29,5 +32,3 @@
     (str/split $ #"\n")
     (map get-seat-id $)
     (apply max $)))
-
-(get-seat-id "FBFBBFFRLR")
