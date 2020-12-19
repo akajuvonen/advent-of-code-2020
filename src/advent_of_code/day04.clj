@@ -26,6 +26,13 @@
 
 (def required-keys [:byr :iyr :eyr :hgt :hcl :ecl :pid])
 
+(defn validate-digits
+  "Validate that a string contains n digits and is between min and max."
+  [n min max s]
+  (and
+   (re-matches (re-pattern (str "\\d{" n "}")) s)
+   (<= min (Integer. s) max)))
+
 (defn validate-passport
   [passport-map]
   true)
@@ -47,3 +54,5 @@
        (map separate-fields)
        (map fields->map)
        (map validate-passport)))
+
+(validate-digits 4 1000 2000 "2200")
