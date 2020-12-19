@@ -34,11 +34,20 @@
        (re-matches (re-pattern (str "\\d{" n "}")) s)
        (<= min (Integer. s) max))))
 
+(defn validate-height
+  "Validate passport height."
+  [s]
+  (if (nil? s) false
+      (or
+       (and (re-matches #"[0-9]{3}cm" s)(<= 150 (Integer. (subs s 0 3)) 193))
+       (and (re-matches #"[0-9]{2}in" s)(<= 59 (Integer. (subs s 0 2)) 76)))))
+
 (defn validate-passport
   [passport-map]
   (and (validate-digits 4 1920 2002 (:byr passport-map))
        (validate-digits 4 2010 2020 (:iyr passport-map))
-       (validate-digits 4 2020 2030 (:eyr passport-map))))
+       (validate-digits 4 2020 2030 (:eyr passport-map))
+       (validate-height (:hgt passport-map))))
 
 (defn part1
   [input]
