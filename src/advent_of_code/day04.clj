@@ -29,13 +29,16 @@
 (defn validate-digits
   "Validate that a string contains n digits and is between min and max."
   [n min max s]
-  (and
-   (re-matches (re-pattern (str "\\d{" n "}")) s)
-   (<= min (Integer. s) max)))
+  (if (nil? s) false
+      (and
+       (re-matches (re-pattern (str "\\d{" n "}")) s)
+       (<= min (Integer. s) max))))
 
 (defn validate-passport
   [passport-map]
-  true)
+  (and (validate-digits 4 1920 2002 (:byr passport-map))
+       (validate-digits 4 2010 2020 (:iyr passport-map))
+       (validate-digits 4 2020 2030 (:eyr passport-map))))
 
 (defn part1
   [input]
@@ -54,5 +57,3 @@
        (map separate-fields)
        (map fields->map)
        (map validate-passport)))
-
-(validate-digits 4 1000 2000 "2200")
