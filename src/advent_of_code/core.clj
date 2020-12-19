@@ -1,12 +1,14 @@
 (ns advent-of-code.core
   (:require [advent-of-code.day01]
             [advent-of-code.day02]
-            [advent-of-code.day04])
+            [advent-of-code.day04]
+            [advent-of-code.day05])
   (:gen-class))
 
 (def input-day1 "inputs/day01.txt")
 (def input-day2 "inputs/day02.txt")
 (def input-day4 "inputs/day04.txt")
+(def input-day5 "inputs/day05.txt")
 
 (defn -main
   "Advent of code solutions."
@@ -25,5 +27,8 @@
   (println "Part 1")
   (println (advent-of-code.day04/part1 input-day4))
   (println "Part 2")
-  (println (advent-of-code.day04/part2 input-day4)))
+  (println (advent-of-code.day04/part2 input-day4))
+  (println "Day 5")
+  (println "Part 1")
+  (println (advent-of-code.day05/part1 input-day5)))
   
