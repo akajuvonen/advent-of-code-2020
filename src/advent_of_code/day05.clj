@@ -1,4 +1,5 @@
-(ns advent-of-code.day05)
+(ns advent-of-code.day05
+  (:require [clojure.string :as str]))
 
 (defn binary-space-partition
   [lower
@@ -23,7 +24,10 @@
 
 (defn part1
   [input]
-  (-> input
-      (slurp)))
+  (as-> input $
+    (slurp $)
+    (str/split $ #"\n")
+    (map get-seat-id $)
+    (apply max $)))
 
 (get-seat-id "FBFBBFFRLR")
