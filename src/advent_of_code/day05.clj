@@ -1,5 +1,6 @@
 (ns advent-of-code.day05
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [clojure.set :as set]))
 
 (defn binary-space-partition
   "Find a number by dividing the range into lower and upper half
@@ -32,3 +33,13 @@
     (str/split $ #"\n")
     (map get-seat-id $)
     (apply max $)))
+
+(defn part2
+  [input]
+  (as-> input $
+    (slurp $)
+    (str/split $ #"\n")
+    (map get-seat-id $)
+    (set $)
+    (set/difference (set (range (apply min $) (apply max $))) $)
+    (first $)))
