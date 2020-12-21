@@ -37,5 +37,7 @@
   (println (advent-of-code.day05/part2 input-day5))
   (println "Day 6")
   (println "Part 1")
-  (println (advent-of-code.day06/part1 input-day6)))
+  (println (advent-of-code.day06/part1 input-day6))
+  (println "Part 2")
+  (println (advent-of-code.day06/part2 input-day6)))
   
