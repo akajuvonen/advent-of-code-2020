@@ -1,5 +1,20 @@
-(ns advent-of-code.day06)
+(ns advent-of-code.day06
+  (:require [clojure.string :as str]
+            [clojure.set :as set]))
+
+(defn uniq-count
+  "Calculate count of uniq chars in a sequence of strings."
+  [l]
+  (->> l
+       (apply str)
+       (set)
+       (count)))
 
 (defn part1
   [input]
-  input)
+  (as-> input $
+    (slurp $)
+    (str/split $ #"\n\n")
+    (map #(str/split % #"\n") $)
+    (map uniq-count $)
+    (count $)))
