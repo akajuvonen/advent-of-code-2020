@@ -16,7 +16,6 @@
   (->> s
        (map set)
        (apply clojure.set/intersection)))
-(common-chars ["abc" "cde"])
 
 (defn part1
   [input]
