@@ -26,20 +26,28 @@
         column (dec (binary-space-partition 1 8 column-string \L))]
     (+ (* 8 row) column)))
 
+(defn parse
+  [input]
+  (str/split (slurp input) #"\n"))
+
+(defn find-missing-number
+  "Find a gap in a sequence of numbers."
+  [nums]
+  (let [s (set nums)]
+    (first
+     (set/difference
+      (set (range (apply min s) (apply max s))) s))))
+
 (defn part1
   [input]
-  (as-> input $
-    (slurp $)
-    (str/split $ #"\n")
-    (map get-seat-id $)
-    (apply max $)))
+  (->> input
+       (parse)
+       (map get-seat-id)
+       (apply max)))
 
 (defn part2
   [input]
-  (as-> input $
-    (slurp $)
-    (str/split $ #"\n")
-    (map get-seat-id $)
-    (set $)
-    (set/difference (set (range (apply min $) (apply max $))) $)
-    (first $)))
+  (->> input
+       (parse)
+       (map get-seat-id)
+       (find-missing-number)))
