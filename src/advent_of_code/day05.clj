@@ -28,7 +28,9 @@
 
 (defn parse
   [input]
-  (str/split (slurp input) #"\n"))
+  (-> input
+      (slurp)
+      (str/split #"\n")))
 
 (defn find-missing-number
   "Find a gap in a sequence of numbers."
