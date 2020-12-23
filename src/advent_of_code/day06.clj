@@ -17,21 +17,22 @@
        (map set)
        (apply clojure.set/intersection)))
 
+(defn parse
+  [input]
+  (map #(str/split % #"\n")
+       (str/split (slurp input) #"\n\n")))
+
 (defn part1
   [input]
   (as-> input $
-    (slurp $)
-    (str/split $ #"\n\n")
-    (map #(str/split % #"\n") $)
+    (parse $)
     (map uniq-count $)
     (reduce + $)))
 
 (defn part2
   [input]
   (as-> input $
-    (slurp $)
-    (str/split $ #"\n\n")
-    (map #(str/split % #"\n") $)
+    (parse $)
     (map common-chars $)
     (map count $)
     (reduce + $)))
