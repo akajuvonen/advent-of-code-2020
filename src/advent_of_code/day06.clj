@@ -24,15 +24,15 @@
 
 (defn part1
   [input]
-  (as-> input $
-    (parse $)
-    (map uniq-count $)
-    (reduce + $)))
+  (->> input
+       (parse)
+       (map uniq-count)
+       (reduce +)))
 
 (defn part2
   [input]
-  (as-> input $
-    (parse $)
-    (map common-chars $)
-    (map count $)
-    (reduce + $)))
+  (->> input
+       (parse)
+       (map common-chars)
+       (map count)
+       (reduce +)))
