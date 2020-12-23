@@ -2,7 +2,7 @@
 
 (defn parse
   [input]
-  (let [bag (re-find #"^(.*)\ bags\ contain" input)]
+  (let [bag (second (re-find #"^(.*)\ bags\ contain" input))]
     bag))
 
-;(parse "mirrored white bags contain 1 bright gray bag, 4 plaid blue bags.")
+(parse "mirrored white bags contain 1 bright gray bag, 4 plaid blue bags.")
