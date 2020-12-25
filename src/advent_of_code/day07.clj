@@ -1,5 +1,6 @@
 (ns advent-of-code.day07
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [clojure.set :as set]))
 
 (def wanted-color "shiny gold")
 
@@ -35,8 +36,8 @@
   (memoize (fn
              [color bags]
              (if-let [parents (get bags color)]
-               (reduce + (map #(find-parents % bags) parents))
-               1))))
+               (apply set/union #{color} (map #(find-parents % bags) parents))
+               #{color}))))
 
 (defn part1
   [input]
@@ -46,6 +47,8 @@
     (map parse i)
     (bag-maps i)
     (find-parents wanted-color i)
+    (count i)
+    (- i 1)
     ))
 
 (part1 "inputs/day07.txt")
