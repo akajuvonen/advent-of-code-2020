@@ -34,10 +34,9 @@
 (def find-parents
   (memoize (fn
              [color bags]
-             (let [parents (get bags color)]
-               (if (nil? parents)
-                 1
-                 (reduce + (map #(find-parents % bags) parents)))))))
+             (if-let [parents (get bags color)]
+               (reduce + (map #(find-parents % bags) parents))
+               1))))
 
 (defn part1
   [input]
