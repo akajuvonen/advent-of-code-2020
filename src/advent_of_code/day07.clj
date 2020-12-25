@@ -2,6 +2,8 @@
   (:require [clojure.string :as str]))
 
 (defn parse
+  "Parse an input text file of bag colors into structure like
+   [parent-color [child-color1, ...], ...]"
   [input]
   (let [bag (second (re-find #"^(.*)\ bags\ contain" input))
         leftover-string (second (str/split input #"contain\ "))
@@ -10,7 +12,7 @@
     [bag included-bag-colors]))
 
 (defn- bag-map
-  "Convert a sequence of [bag/list of child bags] into a map {child [parent]}.
+  "Convert a sequence of [bag-color [child bag colors]] into a map {child [parent]}.
    Children may be nil."
   [[parent children]]
   (map #(hash-map % [parent]) children))
