@@ -10,16 +10,22 @@
     [bag included-bag-colors]))
 
 (defn- bag-map
-  "Convert a sequence of [bag/list of child bags] into a map {child [parent]}"
+  "Convert a sequence of [bag/list of child bags] into a map {child [parent]}.
+   Children may be nil."
   [[parent children]]
   (map #(hash-map % [parent]) children))
 
 (defn bag-maps
-  "Convert a sequence of [bag/list of child bags] pairs into map of bags and its parents."
+  "Convert a sequence of [bag/list of child bags] pairs into map
+   of bags and its parents. E.g.,
+   {bag-color [parent-color1 parent-color2], ...}"
   [bags]
-  (as-> bags b
-    (map bag-map b)
-    (flatten b)))
+  (->> bags
+    (map bag-map)
+    (flatten)
+    (apply merge-with into)
+    (remove (comp nil? first))
+    (into {})))
 
 (defn part1
   [input]
