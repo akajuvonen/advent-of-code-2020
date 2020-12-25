@@ -31,12 +31,13 @@
     (remove (comp nil? first))
     (into {})))
 
-(defn find-parents
-  [color bags]
-  (let [parents (get bags color)]
-    (if (nil? parents)
-      1
-      (reduce + (map #(find-parents % bags) parents)))))
+(def find-parents
+  (memoize (fn
+             [color bags]
+             (let [parents (get bags color)]
+               (if (nil? parents)
+                 1
+                 (reduce + (map #(find-parents % bags) parents)))))))
 
 (defn part1
   [input]
