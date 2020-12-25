@@ -9,5 +9,12 @@
         included-bag-colors (map second (map #(re-find #"\d\ (.*)\ " %) included-bag-strings))]
     [bag included-bag-colors]))
 
+(defn part1
+  [input]
+  (as-> input i
+    (slurp i)
+    (str/split i #"\n")
+    (map parse i)))
+
 (parse "mirrored white bags contain 1 bright gray bag, 4 plaid blue bags.")
 (parse "drab silver bags contain no other bags.")
