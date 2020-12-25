@@ -9,12 +9,24 @@
         included-bag-colors (map second (map #(re-find #"\d\ (.*)\ " %) included-bag-strings))]
     [bag included-bag-colors]))
 
+(defn- bag-map
+  "Convert a sequence of [bag/list of child bags] into a map {child [parent]}"
+  [[parent children]]
+  (map #(hash-map % [parent]) children))
+
+(defn bag-maps
+  "Convert a sequence of [bag/list of child bags] pairs into map of bags and its parents."
+  [bags]
+  (as-> bags b
+    (map bag-map b)
+    (flatten b)))
+
 (defn part1
   [input]
   (as-> input i
     (slurp i)
     (str/split i #"\n")
-    (map parse i)))
+    (map parse i)
+    (bag-maps i)))
 
-(parse "mirrored white bags contain 1 bright gray bag, 4 plaid blue bags.")
-(parse "drab silver bags contain no other bags.")
+(part1 "inputs/day07.txt")
