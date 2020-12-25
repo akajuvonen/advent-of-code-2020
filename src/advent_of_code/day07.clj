@@ -32,12 +32,17 @@
     (remove (comp nil? first))
     (into {})))
 
-(def find-parents
+(def find-parents-m
   (memoize (fn
              [color bags]
              (if-let [parents (get bags color)]
-               (apply set/union #{color} (map #(find-parents % bags) parents))
+               (apply set/union #{color} (map #(find-parents-m % bags) parents))
                #{color}))))
+
+(defn find-parents
+  "Return a set of bags that can contain bag with color `color`."
+  [color bags]
+  (disj (find-parents-m color bags) color))
 
 (defn part1
   [input]
@@ -47,8 +52,6 @@
     (map parse i)
     (bag-maps i)
     (find-parents wanted-color i)
-    (count i)
-    (- i 1)
-    ))
+    (count i)))
 
 (part1 "inputs/day07.txt")
