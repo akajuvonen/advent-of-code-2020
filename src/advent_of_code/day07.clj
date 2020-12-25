@@ -53,5 +53,3 @@
        (bag-maps)
        (find-parents wanted-color)
        (count)))
-
-(part1 "inputs/day07.txt")
