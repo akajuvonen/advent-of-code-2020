@@ -1,6 +1,8 @@
 (ns advent-of-code.day07
   (:require [clojure.string :as str]))
 
+(def wanted-color "shiny gold")
+
 (defn parse
   "Parse an input text file of bag colors into structure like
    [parent-color [child-color1, ...], ...]"
@@ -29,12 +31,21 @@
     (remove (comp nil? first))
     (into {})))
 
+(defn find-parents
+  [color bags]
+  (let [parents (get bags color)]
+    (if (nil? parents)
+      1
+      (reduce + (map #(find-parents % bags) parents)))))
+
 (defn part1
   [input]
   (as-> input i
     (slurp i)
     (str/split i #"\n")
     (map parse i)
-    (bag-maps i)))
+    (bag-maps i)
+    (find-parents wanted-color i)
+    ))
 
 (part1 "inputs/day07.txt")
