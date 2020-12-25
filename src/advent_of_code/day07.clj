@@ -5,7 +5,7 @@
 (def wanted-color "shiny gold")
 
 (defn parse
-  "Parse an input text file of bag colors into structure like
+  "Parse an input list of strings of bag colors into structure like
    [parent-color [child-color1, ...], ...]"
   [input]
   (let [bag (second (re-find #"^(.*)\ bags\ contain" input))
@@ -46,12 +46,12 @@
 
 (defn part1
   [input]
-  (as-> input i
-    (slurp i)
-    (str/split i #"\n")
-    (map parse i)
-    (bag-maps i)
-    (find-parents wanted-color i)
-    (count i)))
+  (->> input
+       (slurp)
+       (str/split-lines)
+       (map parse)
+       (bag-maps)
+       (find-parents wanted-color)
+       (count)))
 
 (part1 "inputs/day07.txt")
