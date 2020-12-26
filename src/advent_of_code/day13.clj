@@ -5,6 +5,11 @@
 
 (defn parse
   [input]
-  (str/split-lines input))
+  (let [split-input (str/split-lines input)
+        timestamp (Integer. (first split-input))
+        bus-id-strings (str/split (second split-input) #",")
+        bus-id-filtered (filter #(not= "x" %) bus-id-strings)
+        bus-ids (map #(Integer. %) bus-id-filtered)]
+    [timestamp bus-ids]))
 
 (parse test-input)
