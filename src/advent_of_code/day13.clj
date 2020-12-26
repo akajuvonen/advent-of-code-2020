@@ -12,5 +12,12 @@
         bus-ids (map #(Integer. %) bus-id-filtered)]
     [timestamp bus-ids]))
 
+(defn departures-by-id
+  "Calculate pairs containing id and time to that id's next departure."
+  [timestamp ids]
+  (let [departures (map #(- % (mod timestamp %)) ids)]
+    (map vector ids departures)))
+
 (let [[timestamp bus-ids] (parse test-input)]
-  (map #(mod timestamp %) bus-ids))
+  (departures-by-id timestamp bus-ids))
+
