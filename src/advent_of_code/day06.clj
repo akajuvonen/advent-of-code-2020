@@ -7,8 +7,8 @@
   [s]
   (->> s
        (apply str)
-       (set)
-       (count)))
+       set
+       count))
 
 (defn common-chars
   "Identify common characters in a sequence of strings."
@@ -19,20 +19,20 @@
 
 (defn parse
   [input]
-  (map #(str/split % #"\n")
+  (map #(str/split-lines %)
        (str/split (slurp input) #"\n\n")))
 
 (defn part1
   [input]
   (->> input
-       (parse)
+       parse
        (map uniq-count)
        (reduce +)))
 
 (defn part2
   [input]
   (->> input
-       (parse)
+       parse
        (map common-chars)
        (map count)
        (reduce +)))

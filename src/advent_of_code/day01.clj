@@ -4,10 +4,6 @@
 
 (def wanted-sum 2020)
 
-(defn parse
-  [string]
-  (str/split string #"\n"))
-
 (defn str->int
   [strs]
   (map #(Integer. %) strs))
@@ -27,10 +23,10 @@
 
 (defn part1
   [input]
-  (let [entries-set (set (str->int (parse (slurp input))))]
+  (let [entries-set (set (str->int (str/split-lines (slurp input))))]
     (find-product entries-set wanted-sum 1)))
 
 (defn part2
   [input]
-  (let [entries-set (set (str->int (parse (slurp input))))]
+  (let [entries-set (set (str->int (str/split-lines (slurp input))))]
     (find-product entries-set wanted-sum 2)))

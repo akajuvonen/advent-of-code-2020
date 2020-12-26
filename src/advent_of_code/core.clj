@@ -4,7 +4,8 @@
             [advent-of-code.day04]
             [advent-of-code.day05]
             [advent-of-code.day06]
-            [advent-of-code.day07])
+            [advent-of-code.day07]
+            [advent-of-code.day13])
   (:gen-class))
 
 (def input-day1 "inputs/day01.txt")
@@ -13,6 +14,7 @@
 (def input-day5 "inputs/day05.txt")
 (def input-day6 "inputs/day06.txt")
 (def input-day7 "inputs/day07.txt")
+(def input-day13 "inputs/day13.txt")
 
 (defn -main
   "Advent of code solutions."
@@ -44,5 +46,8 @@
   (println (advent-of-code.day06/part2 input-day6))
   (println "Day 7")
   (println "Part 1")
-  (println (advent-of-code.day07/part1 input-day7)))
+  (println (advent-of-code.day07/part1 input-day7))
+  (println "Day 13")
+  (println "Part 1")
+  (println (advent-of-code.day13/part1 input-day13)))
   

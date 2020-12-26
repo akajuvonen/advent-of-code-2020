@@ -29,18 +29,18 @@
        (map #(nth passwd % nil))
        (map #(= % character))
        (filter identity)
-       (count)
+       count
        (= 1)))
 
 (defn validate-all-passwds
   [input
    validation-func]
-  (let [string (str/split input #"\n")]
-    (->> string
-        (map parse-line)
-        (map #(apply validation-func %))
-        (filter identity)
-        (count))))
+  (->> input
+       (str/split-lines)
+       (map parse-line)
+       (map #(apply validation-func %))
+       (filter identity)
+       count))
   
 (defn part1
   [input]
