@@ -29,7 +29,7 @@
        (map #(nth passwd % nil))
        (map #(= % character))
        (filter identity)
-       (count)
+       count
        (= 1)))
 
 (defn validate-all-passwds
@@ -40,7 +40,7 @@
         (map parse-line)
         (map #(apply validation-func %))
         (filter identity)
-        (count))))
+        count)))
   
 (defn part1
   [input]

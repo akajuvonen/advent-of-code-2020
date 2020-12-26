@@ -27,7 +27,7 @@
   [bags]
   (->> bags
     (map bag-map)
-    (flatten)
+    flatten
     (apply merge-with into)
     (remove (comp nil? first))
     (into {})))
@@ -47,9 +47,9 @@
 (defn part1
   [input]
   (->> input
-       (slurp)
-       (str/split-lines)
+       slurp
+       str/split-lines
        (map parse)
-       (bag-maps)
+       bag-maps
        (find-parents wanted-color)
-       (count)))
+       count))

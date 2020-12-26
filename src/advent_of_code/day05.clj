@@ -29,7 +29,7 @@
 (defn parse
   [input]
   (-> input
-      (slurp)
+      slurp
       (str/split #"\n")))
 
 (defn find-missing-number
@@ -43,13 +43,13 @@
 (defn part1
   [input]
   (->> input
-       (parse)
+       parse
        (map get-seat-id)
        (apply max)))
 
 (defn part2
   [input]
   (->> input
-       (parse)
+       parse
        (map get-seat-id)
        (find-missing-number)))

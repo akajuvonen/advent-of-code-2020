@@ -6,7 +6,7 @@
   "Separate passport entries into their elements."
   [input]
   (-> input
-      (slurp)
+      slurp
       (str/split #"\n\n")))
 
 (defn separate-fields
@@ -65,19 +65,19 @@
 (defn part1
   [input]
   (->> input
-       (separate-passports)
+       separate-passports
        (map separate-fields)
        (map fields->map)
        (map validate-required-fields)
        (filter identity)
-       (count)))
+       count))
 
 (defn part2
   [input]
   (->> input
-       (separate-passports)
+       separate-passports
        (map separate-fields)
        (map fields->map)
        (map validate-passport)
        (filter identity)
-       (count)))
+       count))
