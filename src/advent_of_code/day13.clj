@@ -23,6 +23,7 @@
   (let [departures (map #(departure-by-id timestamp %) ids)]
     (map vector ids departures)))
 
-(let [[timestamp bus-ids] (parse test-input)]
-  (all-departures-by-id timestamp bus-ids))
+(let [[timestamp bus-ids] (parse test-input)
+      deps-by-id (all-departures-by-id timestamp bus-ids)]
+  (reduce * (apply min-key second deps-by-id)))
 
