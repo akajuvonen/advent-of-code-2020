@@ -28,8 +28,3 @@
   (let [[timestamp bus-ids] (parse (slurp input-filename))
         departures-by-id (all-departures-by-id timestamp bus-ids)]
     (reduce * (apply min-key second departures-by-id))))
-
-(let [[timestamp bus-ids] (parse test-input)
-      deps-by-id (all-departures-by-id timestamp bus-ids)]
-  (reduce * (apply min-key second deps-by-id)))
-
