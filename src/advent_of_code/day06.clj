@@ -19,7 +19,7 @@
 
 (defn parse
   [input]
-  (map #(str/split % #"\n")
+  (map #(str/split-lines %)
        (str/split (slurp input) #"\n\n")))
 
 (defn part1
