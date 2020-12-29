@@ -27,6 +27,11 @@
   (let [departures (map #(departure-by-id timestamp %) ids)]
     (map vector ids departures)))
 
+(defn find-subsequent-departures
+  [ids indices]
+  (sort #(compare %2 %1)
+        (map vector ids indices)))
+
 (defn part1
   [input-filename]
   (let [[timestamp bus-ids _] (parse (slurp input-filename))
@@ -34,6 +39,5 @@
     (reduce * (apply min-key second departures-by-id))))
 
 (def test-input "939\n7,13,x,x,59,x,31,19")
-(let [[timestamp ids indices] (parse test-input)]
-  [timestamp ids indices])
-
+(let [[_ ids indices] (parse test-input)]
+  (find-subsequent-departures ids indices))
