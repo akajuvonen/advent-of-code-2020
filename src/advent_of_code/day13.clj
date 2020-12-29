@@ -2,6 +2,10 @@
   (:require [clojure.string :as str]))
 
 (defn parse
+  "Parse input string and return
+   [timestamp (list of bus ids) (list of indices if each id on the departure list)].
+   Note that indices are calculated before buses not in service (marked with x) are
+   removed."
   [input]
   (let [split-input (str/split-lines input)
         timestamp (Integer. (first split-input))
