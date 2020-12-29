@@ -1,16 +1,16 @@
 (ns advent-of-code.day13
   (:require [clojure.string :as str]))
 
-(def test-input "939\n7,13,x,x,59,x,31,19")
-
 (defn parse
   [input]
   (let [split-input (str/split-lines input)
         timestamp (Integer. (first split-input))
         bus-id-strings (str/split (second split-input) #",")
-        bus-id-filtered (filter #(not= "x" %) bus-id-strings)
-        bus-ids (map #(Integer. %) bus-id-filtered)]
-    [timestamp bus-ids]))
+        bus-ids-enumerated (map vector (range) bus-id-strings)
+        bus-ids-filtered (filter #(not= "x" (second %)) bus-ids-enumerated)
+        bus-ids (map #(Integer. (second %)) bus-ids-filtered)
+        indices (map first bus-ids-filtered)]
+    [timestamp bus-ids indices]))
 
 (defn departure-by-id
   "Calculate time to next departure for a bus id."
@@ -25,6 +25,11 @@
 
 (defn part1
   [input-filename]
-  (let [[timestamp bus-ids] (parse (slurp input-filename))
+  (let [[timestamp bus-ids _] (parse (slurp input-filename))
         departures-by-id (all-departures-by-id timestamp bus-ids)]
     (reduce * (apply min-key second departures-by-id))))
+
+(def test-input "939\n7,13,x,x,59,x,31,19")
+(let [[timestamp ids indices] (parse test-input)]
+  [timestamp ids indices])
+
