@@ -29,11 +29,11 @@
 
 (defn find-modulo
   "Finds a number starting from `start` taking steps of size `stepsize` so that
-   (number mod `modulo`) == `remainder`."
-  [start stepsize modulo remainder]
-  (println [start stepsize modulo remainder])
+   (number + `offset` mod `modulo`) == 0."
+  [start stepsize modulo offset]
+  (println [start stepsize modulo offset])
   (loop [x start]
-    (if (= (mod x modulo) remainder)
+    (if (= (mod (+ x offset) modulo) 0)
       x
       (recur (+ x stepsize)))))
 
@@ -48,7 +48,7 @@
         x
         (recur (cons s remaining)
                (* stepsize (first s))
-               (find-modulo x stepsize (first s) (- (first s) (second s))))))))
+               (find-modulo x stepsize (first s) (second s)))))))
 
 (defn part1
   [input-filename]
