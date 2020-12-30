@@ -31,6 +31,7 @@
   "Finds a number starting from `start` taking steps of size `stepsize` so that
    (number mod `modulo`) == `remainder`."
   [start stepsize modulo remainder]
+  (println [start stepsize modulo remainder])
   (loop [x start]
     (if (= (mod x modulo) remainder)
       x
@@ -39,14 +40,13 @@
 (defn find-subsequent-departures
   [ids indices]
   (let [ids-indices (sort #(compare %2 %1)
-              (map vector ids indices))
-        cur (first ids-indices)
-        nex (second ids-indices)
-        start (- (first cur) (second cur))
-        stepsize (first cur)
-        modulo (first nex)
-        remainder (- modulo (second nex))]
-    (find-modulo start stepsize modulo remainder)))
+              (map vector ids indices))]
+    (loop [[f s & remaining] ids-indices
+           x (- (first f) (second f))]
+      (if (nil? s)
+        x
+        (recur remaining
+               (find-modulo x (first f) (first s) (- (first s) (second s))))))))
 
 (defn part1
   [input-filename]
