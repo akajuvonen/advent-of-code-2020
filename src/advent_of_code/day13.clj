@@ -42,11 +42,13 @@
   (let [ids-indices (map vector ids indices)]
     (println ids-indices)
     (loop [[f s & remaining] ids-indices
-           x (- (first f) (second f))]
+           stepsize (first f)
+           x (first f)]
       (if (nil? s)
         x
         (recur (cons s remaining)
-               (find-modulo x (first f) (first s) (- (first s) (second s))))))))
+               (* stepsize (first s))
+               (find-modulo x stepsize () ()))))))
 
 (defn part1
   [input-filename]
