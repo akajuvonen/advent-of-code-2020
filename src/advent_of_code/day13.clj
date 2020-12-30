@@ -31,7 +31,6 @@
   "Finds a number starting from `start` taking steps of size `stepsize` so that
    (number + `offset` mod `modulo`) == 0."
   [start stepsize modulo offset]
-  (println [start stepsize modulo offset])
   (loop [x start]
     (if (= (mod (+ x offset) modulo) 0)
       x
@@ -40,7 +39,6 @@
 (defn find-subsequent-departures
   [ids indices]
   (let [ids-indices (map vector ids indices)]
-    (println ids-indices)
     (loop [[f s & remaining] ids-indices
            stepsize (first f)
            x (first f)]
@@ -60,9 +58,3 @@
   [input-filename]
   (let [[_ ids indices] (parse (slurp input-filename))]
     (find-subsequent-departures ids indices)))
-
-(time (part2 "inputs/day13.txt"))
-
-(def test-input "1\n1789,37,47,1889")
-(let [[_ ids indices] (parse test-input)]
-  (find-subsequent-departures ids indices))
