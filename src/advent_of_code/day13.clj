@@ -39,13 +39,13 @@
 
 (defn find-subsequent-departures
   [ids indices]
-  (let [ids-indices (sort #(compare %2 %1)
-              (map vector ids indices))]
+  (let [ids-indices (map vector ids indices)]
+    (println ids-indices)
     (loop [[f s & remaining] ids-indices
            x (- (first f) (second f))]
       (if (nil? s)
         x
-        (recur remaining
+        (recur (cons s remaining)
                (find-modulo x (first f) (first s) (- (first s) (second s))))))))
 
 (defn part1
