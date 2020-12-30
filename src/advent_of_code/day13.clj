@@ -48,7 +48,7 @@
         x
         (recur (cons s remaining)
                (* stepsize (first s))
-               (find-modulo x stepsize () ()))))))
+               (find-modulo x stepsize (first s) (- (first s) (second s))))))))
 
 (defn part1
   [input-filename]
@@ -56,6 +56,13 @@
         departures-by-id (all-departures-by-id timestamp bus-ids)]
     (reduce * (apply min-key second departures-by-id))))
 
-(def test-input "939\n7,13,x,x,59,x,31,19")
+(defn part2
+  [input-filename]
+  (let [[_ ids indices] (parse (slurp input-filename))]
+    (find-subsequent-departures ids indices)))
+
+(time (part2 "inputs/day13.txt"))
+
+(def test-input "1\n1789,37,47,1889")
 (let [[_ ids indices] (parse test-input)]
   (find-subsequent-departures ids indices))
