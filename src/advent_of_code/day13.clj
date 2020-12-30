@@ -27,7 +27,7 @@
   (let [departures (map #(departure-by-id timestamp %) ids)]
     (map vector ids departures)))
 
-(defn modulo-sieve
+(defn find-modulo
   "Finds a number starting from `start` taking steps of size `stepsize` so that
    (number mod `modulo`) == `remainder`."
   [start stepsize modulo remainder]
@@ -38,8 +38,15 @@
 
 (defn find-subsequent-departures
   [ids indices]
-  (sort #(compare %2 %1)
-        (map vector ids indices)))
+  (let [ids-indices (sort #(compare %2 %1)
+              (map vector ids indices))
+        cur (first ids-indices)
+        nex (second ids-indices)
+        start (- (first cur) (second cur))
+        stepsize (first cur)
+        modulo (first nex)
+        remainder (- modulo (second nex))]
+    (find-modulo start stepsize modulo remainder)))
 
 (defn part1
   [input-filename]
