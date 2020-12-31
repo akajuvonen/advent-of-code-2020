@@ -38,18 +38,6 @@
 
 (defn find-subsequent-departures
   [ids indices]
-  (let [ids-indices (map vector ids indices)]
-    (loop [[f s & remaining] ids-indices
-           stepsize (first f)
-           x (first f)]
-      (if (nil? s)
-        x
-        (recur (cons s remaining)
-               (* stepsize (first s))
-               (find-modulo x stepsize (first s) (second s)))))))
-
-(defn find-subsequent-departures2
-  [ids indices]
   (loop [x (first ids)
          stepsize (first ids)
          modulo (second ids)
@@ -59,7 +47,7 @@
     (if (nil? modulo)
       x
       (recur (find-modulo x stepsize modulo offset)
-             (* stepsize (second ids))
+             (* stepsize (first ids-remaining))
              (second ids-remaining)
              (second indices-remaining)
              (drop 1 ids-remaining)
@@ -75,5 +63,3 @@
   [input-filename]
   (let [[_ ids indices] (parse (slurp input-filename))]
     (find-subsequent-departures ids indices)))
-
-(apply find-subsequent-departures2 (drop 1 (parse "1\n17,x,13,19")))
