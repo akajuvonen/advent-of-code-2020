@@ -48,6 +48,23 @@
                (* stepsize (first s))
                (find-modulo x stepsize (first s) (second s)))))))
 
+(defn find-subsequent-departures2
+  [ids indices]
+  (loop [x (first ids)
+         stepsize (first ids)
+         modulo (second ids)
+         offset (second indices)
+         ids-remaining (drop 1 ids)
+         indices-remaining (drop 1 indices)]
+    (if (nil? modulo)
+      x
+      (recur (find-modulo x stepsize modulo offset)
+             (* stepsize (second ids))
+             (second ids-remaining)
+             (second indices-remaining)
+             (drop 1 ids-remaining)
+             (drop 1 indices-remaining)))))
+
 (defn part1
   [input-filename]
   (let [[timestamp bus-ids _] (parse (slurp input-filename))
@@ -58,3 +75,5 @@
   [input-filename]
   (let [[_ ids indices] (parse (slurp input-filename))]
     (find-subsequent-departures ids indices)))
+
+(apply find-subsequent-departures2 (drop 1 (parse "1\n17,x,13,19")))
