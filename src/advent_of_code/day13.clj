@@ -37,6 +37,9 @@
       (recur (+ x stepsize)))))
 
 (defn find-subsequent-departures
+  "Find departures leaving at certain offsets (designated by their indices).
+   The solution uses Chinese Remainder Theorem with sieving method. Check
+   AoC day 13 part 2 description for more details."
   [ids indices]
   (loop [x (first ids)
          stepsize (first ids)
