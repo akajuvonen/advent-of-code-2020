@@ -35,7 +35,12 @@
 (defn run-day-part
   "Run advent of code day `day` part `part` (1 or 2)."
   [day part]
-  ((resolve (symbol (gen-func day part))) (gen-input day)))
+  (let [day (pad-int-string day)
+        f (resolve (symbol (gen-func day part)))
+        input (gen-input day)]
+    (if (nil? f)
+      (str "Code for day " day " part " part " not found.")
+      (f input))))
 
 (defn -main
   "Advent of code solutions."
