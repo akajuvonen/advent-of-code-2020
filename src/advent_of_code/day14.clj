@@ -1,6 +1,7 @@
 (ns advent-of-code.day14)
 
 (defn pad-binary-string
+  "Pad a binary string with leading zeros to specified length."
   [string length]
   (let [padding-size (- length (count string))
         padding (apply str (take padding-size (repeat "0")))]
