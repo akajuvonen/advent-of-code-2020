@@ -16,9 +16,21 @@
 (def input-day7 "inputs/day07.txt")
 (def input-day13 "inputs/day13.txt")
 
+(defn gen-func
+  [day part]
+  (str "advent-of-code.day" day "/part" part))
+
+(gen-func "01" "1")
+
+(defn gen-input
+  [day]
+  (str "inputs/day" day ".txt"))
+
+(gen-input "01")
+
 (defn -main
   "Advent of code solutions."
-  []
+  [day part]
   (println "Day 1")
   (println "Part 1")
   (println (advent-of-code.day01/part1 input-day1))
