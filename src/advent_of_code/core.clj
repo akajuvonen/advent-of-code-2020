@@ -16,6 +16,14 @@
 (def input-day7 "inputs/day07.txt")
 (def input-day13 "inputs/day13.txt")
 
+(defn- pad-int-string
+  "Pad string x if just one digit, e.g., 1 -> 01.
+   Always return string."
+  [x]
+  (if (<= (count x) 1)
+    (str 0 x)
+    x))
+
 (defn gen-func
   [day part]
   (str "advent-of-code.day" day "/part" part))
@@ -28,8 +36,6 @@
   "Run advent of code day `day` part `part` (1 or 2)."
   [day part]
   ((resolve (symbol (gen-func day part))) (gen-input day)))
-
-(run-day-part "01" "1")
 
 (defn -main
   "Advent of code solutions."
