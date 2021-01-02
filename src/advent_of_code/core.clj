@@ -20,13 +20,16 @@
   [day part]
   (str "advent-of-code.day" day "/part" part))
 
-(gen-func "01" "1")
-
 (defn gen-input
   [day]
   (str "inputs/day" day ".txt"))
 
-(gen-input "01")
+(defn run-day-part
+  "Run advent of code day `day` part `part` (1 or 2)."
+  [day part]
+  ((resolve (symbol (gen-func day part))) (gen-input day)))
+
+(run-day-part "01" "1")
 
 (defn -main
   "Advent of code solutions."
