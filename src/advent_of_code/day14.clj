@@ -60,10 +60,12 @@
 
 (defn part1
   [input]
-  (-> input
+  (->> input
       slurp
       str/split-lines
-      process))
+      process
+      vals
+      (reduce +)))
 
 (comment
   (Integer/toBinaryString 39993)
