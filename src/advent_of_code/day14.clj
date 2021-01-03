@@ -22,6 +22,14 @@
   [number mask]
   (apply str (map mask-bit number mask)))
 
+(defn apply-mask-int
+  [number mask length]
+  (-> number
+    (Integer/toBinaryString)
+    (pad-binary-string length)
+    (apply-bitmask mask)
+    (Integer/parseInt 2)))
+
 (defn- parse-mask
   [line]
   (second (str/split line #"mask = ")))
@@ -35,7 +43,20 @@
 
 (defn process
   [lines]
-  lines)
+  (loop [[current-line & remaining-lines] lines
+         mask "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+         memory {}]
+    (if (empty? remaining-lines)
+      memory
+      (if-let [new-mask (parse-mask current-line)]
+        (recur remaining-lines
+               new-mask
+               memory)
+        (let [[address value] (parse-mem-value current-line)
+              masked-value (apply-mask-int value mask 36)]
+          (recur remaining-lines
+                 mask
+                 (assoc memory address masked-value)))))))
 
 (defn part1
   [input]
@@ -53,4 +74,8 @@
         mask "X1XX"]
     (apply-bitmask number mask))
   (parse-mask "mask = 01X1101100X00X10X00110111X0011111X10")
-  (parse-mem-value "mem[40640] = 198926"))
+  (parse-mem-value "mem[40640] = 198926")
+  (process (str/split-lines "mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X
+mem[8] = 11
+mem[7] = 101
+mem[8] = 0")))
