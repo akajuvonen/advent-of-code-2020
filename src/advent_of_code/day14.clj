@@ -46,7 +46,7 @@
   (loop [[current-line & remaining-lines] lines
          mask "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
          memory {}]
-    (if (empty? remaining-lines)
+    (if (empty? current-line)
       memory
       (if-let [new-mask (parse-mask current-line)]
         (recur remaining-lines
