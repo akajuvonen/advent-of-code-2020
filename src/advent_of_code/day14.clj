@@ -28,7 +28,10 @@
 
 (defn- parse-mem-value
   [line]
-  line)
+  (->> line
+       (re-matches #"mem\[(\d+)\]\ =\ (\d+)")
+       (drop 1)
+       (map #(Integer/parseInt %))))
 
 (defn process
   [lines]
@@ -50,4 +53,4 @@
         mask "X1XX"]
     (apply-bitmask number mask))
   (parse-mask "mask = 01X1101100X00X10X00110111X0011111X10")
-  (parse-mem-value "mem [40640] = 198926"))
+  (parse-mem-value "mem[40640] = 198926"))
