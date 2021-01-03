@@ -26,6 +26,10 @@
   [line]
   (second (str/split line #"mask = ")))
 
+(defn- parse-mem-value
+  [line]
+  line)
+
 (defn process
   [lines]
   lines)
@@ -37,14 +41,13 @@
       str/split-lines
       process))
 
-(Integer/toBinaryString 39993)
-(Integer/parseInt "1011" 2)
-
-(let [s "1001110000111001"]
-  (pad-binary-string s 36))
-
-(let [number "1011"
-      mask "X1XX"]
-  (apply-bitmask number mask))
-
-(parse-mask "mask = 01X1101100X00X10X00110111X0011111X10")
+(comment
+  (Integer/toBinaryString 39993)
+  (Integer/parseInt "1011" 2)
+  (let [s "1001110000111001"]
+    (pad-binary-string s 36))
+  (let [number "1011"
+        mask "X1XX"]
+    (apply-bitmask number mask))
+  (parse-mask "mask = 01X1101100X00X10X00110111X0011111X10")
+  (parse-mem-value "mem [40640] = 198926"))
