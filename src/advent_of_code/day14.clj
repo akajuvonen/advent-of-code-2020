@@ -28,7 +28,7 @@
     (Integer/toBinaryString)
     (pad-binary-string length)
     (apply-bitmask mask)
-    (Integer/parseInt 2)))
+    (Long/parseLong 2))) ; can only decode 32-bit integers, not 36
 
 (defn- parse-mask
   [line]
@@ -78,4 +78,5 @@
   (process (str/split-lines "mask = XXXXXXXXXXXXXXXXXXXXXXXXXXXXX1XXXX0X
 mem[8] = 11
 mem[7] = 101
-mem[8] = 0")))
+mem[8] = 0"))
+  (process (str/split-lines (slurp "inputs/day14.txt"))))
