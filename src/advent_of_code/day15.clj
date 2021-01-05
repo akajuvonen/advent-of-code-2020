@@ -9,7 +9,7 @@
   [initial-numbers n]
   (loop [numbers (init-numbers-map initial-numbers)
          turn (count initial-numbers)
-         last-number 6]
+         last-number (last initial-numbers)]
     (if (>= turn n)
       last-number
       (if-let [last-spoken (get numbers last-number)]
@@ -20,7 +20,3 @@
         (recur (assoc numbers last-number turn)
                (inc turn)
                0)))))
-
-(comment
-  (let [initial '(0 3 6)]
-    (memory-game initial 10)))
