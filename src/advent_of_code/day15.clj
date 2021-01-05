@@ -1,4 +1,5 @@
-(ns advent-of-code.day15)
+(ns advent-of-code.day15
+  (:require [clojure.string :as str]))
 
 (defn- init-numbers-map
   [initial-numbers]
@@ -20,3 +21,14 @@
         (recur (assoc numbers last-number turn)
                (inc turn)
                0)))))
+
+(defn parse
+  [input]
+  (let [strings (-> input slurp (str/split #","))]
+    (map #(Integer. %) strings)))
+
+(defn part1
+  [input]
+  (-> input
+      parse
+      (memory-game 2020)))
