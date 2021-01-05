@@ -1,9 +1,14 @@
 (ns advent-of-code.day15)
 
+(defn- init-numbers-map
+  [initial-numbers]
+  (into {}
+        (map vector initial-numbers (range 1 (inc (count initial-numbers))))))
+
 (defn memory-game
-  [initial-map n]
-  (loop [numbers initial-map
-         turn (count initial-map)
+  [initial-numbers n]
+  (loop [numbers (init-numbers-map initial-numbers)
+         turn (count initial-numbers)
          last-number 6]
     (if (>= turn n)
       last-number
@@ -17,5 +22,5 @@
                0)))))
 
 (comment
-  (let [initial (into {} (map vector [0 3 6] (range 1 4)))]
+  (let [initial '(0 3 6)]
     (memory-game initial 10)))
