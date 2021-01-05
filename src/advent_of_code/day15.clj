@@ -32,3 +32,9 @@
   (-> input
       parse
       (memory-game 2020)))
+
+(defn part2
+  [input]
+  (-> input
+      parse
+      (memory-game 30000000)))
