@@ -34,7 +34,5 @@
 (defn part1
   [input]
   (let [[rules nearby-tickets] (-> input slurp parse)]
-    [rules nearby-tickets]))
-
-(comment
-  (part1 "inputs/day16.txt"))
+    (reduce +
+            (remove #(contains? rules %) nearby-tickets))))
