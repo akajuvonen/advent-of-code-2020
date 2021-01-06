@@ -7,10 +7,13 @@
                           (map #(str/split % #": "))
                           (map second)
                           (map #(str/split % #" or ")))]
-    (set (flatten
-          (for [rule-pair parsed-rules, rule rule-pair]
-                    (apply range
-                           (mapv #(Integer. %) (str/split rule #"-"))))))))
+    (set
+     (flatten
+      (for [rule-pair parsed-rules, rule rule-pair]
+        (apply range
+               (mapv
+                #(Integer. %)
+                (str/split rule #"-"))))))))
 
 (defn- parse-nearby-tickets
   [nearby-tickets]
@@ -28,6 +31,10 @@
         nearby-tickets (parse-nearby-tickets nearby-tickets)]
     [rules nearby-tickets]))
 
-(let [input (slurp "inputs/day16.txt")]
-  (-> input
-      parse))
+(defn part1
+  [input]
+  (let [[rules nearby-tickets] (-> input slurp parse)]
+    [rules nearby-tickets]))
+
+(comment
+  (part1 "inputs/day16.txt"))
