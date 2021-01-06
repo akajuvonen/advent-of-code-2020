@@ -23,7 +23,7 @@
 
 (defn parse
   [input]
-  (let [[rules your-ticket nearby-tickets] (str/split input #"\n\n")
+  (let [[rules _your-ticket nearby-tickets] (str/split input #"\n\n")
         rules (parse-rules (str/split-lines rules))
         nearby-tickets (parse-nearby-tickets nearby-tickets)]
     [rules nearby-tickets]))
