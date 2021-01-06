@@ -7,8 +7,10 @@
                           (map #(str/split % #": "))
                           (map second)
                           (map #(str/split % #" or ")))]
-    (for [rule-pair parsed-rules, rule rule-pair]
-      (map #(Integer. %) (str/split rule #"-")))))
+    (set (flatten
+          (for [rule-pair parsed-rules, rule rule-pair]
+                    (apply range
+                           (mapv #(Integer. %) (str/split rule #"-"))))))))
 
 (defn parse
   [input]
