@@ -7,9 +7,12 @@
 
 (defn evaluate
   "Evaluate a list containing arithmetic expressions, e.g.,
-   `(1 + 2 * 3)`."
-  [[acc & remaining]]
-  (reduce infix acc (partition 2 remaining)))
+   `(1 + 2 * 3)`. If input is not a list, return identity."
+  [x]
+  (if (list? x)
+    (let [[acc & remaining] x]
+      (reduce infix acc (partition 2 remaining)))
+    x))
 
 (evaluate (read-string "(1 + 2 * 3)"))
 
