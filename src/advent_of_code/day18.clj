@@ -27,6 +27,7 @@
     (str/split-lines i)
     (map #(str \( % \)) i)
     (map read-string i)
-    (map #(traverse % evaluate) i)))
+    (map #(traverse % evaluate) i)
+    (reduce + i)))
 
 (part1 "inputs/day18.txt")
