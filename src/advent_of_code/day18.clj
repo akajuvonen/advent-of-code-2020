@@ -1,5 +1,6 @@
 (ns advent-of-code.day18
-  (:require [clojure.walk :as walk]))
+  (:require [clojure.walk :as walk]
+            [clojure.string :as str]))
 
 (defn- infix
   [left [op right]]
@@ -14,8 +15,18 @@
       (reduce infix acc (partition 2 remaining)))
     x))
 
-(evaluate (read-string "(1 + 2 * 3)"))
+(defn traverse
+  "Traverse a tree (list of lists) in post-order and apply f."
+  [tree f]
+  (walk/postwalk f tree))
 
 (defn part1
   [input]
-  (slurp input))
+  (as-> input i
+    (slurp i)
+    (str/split-lines i)
+    (map #(str \( % \)) i)
+    (map read-string i)
+    (map #(traverse % evaluate) i)))
+
+(part1 "inputs/day18.txt")
