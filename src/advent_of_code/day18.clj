@@ -22,12 +22,10 @@
 
 (defn part1
   [input]
-  (as-> input i
-    (slurp i)
-    (str/split-lines i)
-    (map #(str \( % \)) i)
-    (map read-string i)
-    (map #(traverse % evaluate) i)
-    (reduce + i)))
-
-(part1 "inputs/day18.txt")
+  (->> input
+    slurp
+    str/split-lines
+    (map #(str \( % \)))
+    (map read-string)
+    (map #(traverse % evaluate))
+    (reduce +)))
