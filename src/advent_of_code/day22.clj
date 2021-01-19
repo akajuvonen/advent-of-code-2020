@@ -25,5 +25,10 @@
           (recur (conj  (subvec deck1 1) card1 card2) (subvec deck2 1))
           (recur (subvec deck1 1) (conj  (subvec deck2 1) card2 card1)))))))
 
+(defn calculate-score
+  [deck]
+  (reduce + (map #(reduce * %)
+                 (map vector deck (range (count deck) 0 -1)))))
+
 (let [[deck1 deck2] (parse (slurp "inputs/day22.txt"))]
   (play-game deck1 deck2))
