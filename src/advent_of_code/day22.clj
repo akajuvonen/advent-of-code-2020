@@ -22,11 +22,8 @@
       (let [card1 (first deck1)
             card2 (first deck2)]
         (if (> card1 card2)
-          (recur (conj  (drop 1 deck1) card1 card2) (drop 1 deck2))
-          (recur (drop 1 deck1) (conj  (drop 1 deck2) card2 card1)))))))
+          (recur (conj  (subvec deck1 1) card1 card2) (subvec deck2 1))
+          (recur (subvec deck1 1) (conj  (subvec deck2 1) card2 card1)))))))
 
 (let [[deck1 deck2] (parse (slurp "inputs/day22.txt"))]
   (play-game deck1 deck2))
-
-(conj [1 2] 3 4)
-(subvec [1 2 3] 1)
