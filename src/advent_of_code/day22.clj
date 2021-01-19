@@ -30,5 +30,7 @@
   (reduce + (map #(reduce * %)
                  (map vector deck (range (count deck) 0 -1)))))
 
-(let [[deck1 deck2] (parse (slurp "inputs/day22.txt"))]
-  (calculate-score (play-game deck1 deck2)))
+(defn part1
+  [input]
+  (let [[deck1 deck2] (parse (slurp input))]
+    (calculate-score (play-game deck1 deck2))))
