@@ -7,11 +7,11 @@
 
 (defn parse
   [input]
-  (as-> input i
-    (str/split i #"\n\n")
-    (map str/split-lines i)
-    (map #(drop 1 %) i)
-    (map #(seq->intvec %) i)))
+  (let [split (str/split input #"\n\n")]
+    (->> split
+     (map str/split-lines)
+     (map #(drop 1 %))
+     (map #(seq->intvec %)))))
 
 (defn play-game
   [deck1 deck2]
@@ -31,4 +31,4 @@
                  (map vector deck (range (count deck) 0 -1)))))
 
 (let [[deck1 deck2] (parse (slurp "inputs/day22.txt"))]
-  (play-game deck1 deck2))
+  (calculate-score (play-game deck1 deck2)))
