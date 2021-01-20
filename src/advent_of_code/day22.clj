@@ -10,7 +10,7 @@
   (let [split (str/split input #"\n\n")]
     (->> split
      (map str/split-lines)
-     (map #(drop 1 %))
+     (map #(rest %))
      (map #(seq->intvec %)))))
 
 (defn play-game

@@ -45,16 +45,16 @@
          stepsize (first ids)
          modulo (second ids)
          offset (second indices)
-         ids-remaining (drop 1 ids)
-         indices-remaining (drop 1 indices)]
+         ids-remaining (rest ids)
+         indices-remaining (rest indices)]
     (if (nil? modulo)
       x
       (recur (find-modulo x stepsize modulo offset)
              (* stepsize (first ids-remaining))
              (second ids-remaining)
              (second indices-remaining)
-             (drop 1 ids-remaining)
-             (drop 1 indices-remaining)))))
+             (rest ids-remaining)
+             (rest indices-remaining)))))
 
 (defn part1
   [input-filename]

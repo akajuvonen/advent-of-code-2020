@@ -19,7 +19,7 @@
   [nearby-tickets]
   (->> nearby-tickets
        str/split-lines
-       (drop 1)
+       rest
        (map #(str/split % #","))
        flatten
        (map #(Integer. %))))

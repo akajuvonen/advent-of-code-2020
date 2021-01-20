@@ -38,7 +38,7 @@
   [line]
   (->> line
        (re-matches #"mem\[(\d+)\]\ =\ (\d+)")
-       (drop 1)
+       rest
        (map #(Integer/parseInt %))))
 
 (defn process
