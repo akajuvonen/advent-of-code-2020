@@ -8,7 +8,7 @@
       (map #(Integer. %))))
 
 (defn transform
-  [value subject-number]
+  [subject-number value]
   (rem  (* value subject-number) 20201227))
 
 (defn get-loops
@@ -17,9 +17,10 @@
          i 0]
     (if  (= value key)
       i
-      (recur (transform value 7) (inc i)))))
+      (recur (transform 7 value) (inc i)))))
 
-(let [[door card] (parse (slurp "inputs/day25.txt"))]
-  (get-loops door))
+(defn get-key
+  [subject-number i]
+  (nth  (iterate (partial transform subject-number) 1) i))
 
-(get-loops 5764801)
+(get-key 17807724 8)
