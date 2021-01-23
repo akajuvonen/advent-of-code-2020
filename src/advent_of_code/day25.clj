@@ -23,4 +23,8 @@
   [subject-number i]
   (nth  (iterate (partial transform subject-number) 1) i))
 
-(get-key 17807724 8)
+(defn part1
+  [input]
+  (let [[card door] (parse (slurp input))
+        loops (get-loops card)]
+    (get-key door loops)))
