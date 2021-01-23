@@ -8,8 +8,18 @@
       (map #(Integer. %))))
 
 (defn transform
-  [value]
-  (rem  (* value 7) 20201227))
+  [value subject-number]
+  (rem  (* value subject-number) 20201227))
+
+(defn get-loops
+  [key]
+  (loop [value 1
+         i 0]
+    (if  (= value key)
+      i
+      (recur (transform value 7) (inc i)))))
 
 (let [[door card] (parse (slurp "inputs/day25.txt"))]
-  [door card])
+  (get-loops door))
+
+(get-loops 5764801)
