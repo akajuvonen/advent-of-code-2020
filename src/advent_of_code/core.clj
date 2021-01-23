@@ -10,7 +10,8 @@
             [advent-of-code.day15]
             [advent-of-code.day16]
             [advent-of-code.day18]
-            [advent-of-code.day22])
+            [advent-of-code.day22]
+            [advent-of-code.day25])
   (:gen-class))
 
 (defn- pad-int-string
